@@ -48,6 +48,7 @@ class String
   private
 
   def check_name(name)
-    !%w[ 1 2 3 4 5 6 7 8 9 0 - _ \ ].map { |i| name.include?(i) }.any?
+    invalid_values = %w[ 1 2 3 4 5 6 7 8 9 0 - _ \ ]
+    name.chars.find { |char| invalid_values.include?(char) }.nil?
   end
 end
