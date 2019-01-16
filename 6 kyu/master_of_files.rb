@@ -36,16 +36,18 @@ class String
   def is_audio
     name, format = self.split('.')
     return false unless %w[ mp3 flac aac alac ].include?(format)
-    checking_name(name)
+    check_name(name)
   end
 
   def is_img
     name, format = self.split('.')
     return false unless %w[ jpg jpeg bmp gif png ].include?(format)
-    checking_name(name)
+    check_name(name)
   end
 
-  def checking_name(name)
+  private
+
+  def check_name(name)
     !%w[ 1 2 3 4 5 6 7 8 9 0 - _ \ ].map { |i| name.include?(i) }.any?
   end
 end
