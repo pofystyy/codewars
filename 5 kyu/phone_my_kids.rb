@@ -24,11 +24,14 @@
 # Bar.phone
 
 class Mother
-  def self.descendants
-    ObjectSpace.each_object(Class).select { |klass| klass < self }
+
+  @subclasses = []
+
+  def self.inherited(subclass)
+    @subclasses << subclass
   end
 
   def self.phone_kids
-    self.descendants.map(&:phone)
+    @subclasses.each(&:phone)
   end
 end
