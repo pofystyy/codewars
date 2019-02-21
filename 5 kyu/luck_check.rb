@@ -19,3 +19,14 @@ def luck_check (str)
   first_half, second_half = str.split(/(\d{#{middle}})\d?(\d{#{middle}})/).last(2)
   first_half.to_i.digits.sum == second_half.to_i.digits.sum
 end
+
+# v2 (without regexp)
+
+def luck_check (str)
+  num = %w(1 2 3 4 5 6 7 8 9 0)
+  raise ArgumentError if !str.chars.map { |i| p num.include? i }.all? || str.empty?
+  middle = str.size / 2
+  first_half = str.chars[0, middle]
+  second_half = str.chars[0-middle, middle]
+  first_half.map(&:to_i).sum == second_half.map(&:to_i).sum
+end
