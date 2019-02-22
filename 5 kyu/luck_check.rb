@@ -24,7 +24,7 @@ end
 
 def luck_check (str)
   num = %w(1 2 3 4 5 6 7 8 9 0)
-  raise ArgumentError if !str.chars.map { |i| p num.include? i }.all? || str.empty?
+  raise ArgumentError if !str.chars.map { |i| num.include? i }.all? || str.empty?
   middle = str.size / 2
   first_half = str.chars[0, middle]
   second_half = str.chars[0-middle, middle]
