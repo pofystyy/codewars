@@ -24,10 +24,5 @@
 # # result should == "apples, pears\ngrapes\nbananas"
 
 def solution(input, markers)
-  input.split("\n").map do |str|
-    markers.map { |symb| str.include?(symb) ? str.match(/^([^#{symb}]+)/)[0] : str }
-  end
-  .map { |a| a.sort_by(&:length) }
-  .map { |i| i[0].rstrip }
-  .join("\n")
+  input.gsub /\s#{markers}.+/, ''
 end
