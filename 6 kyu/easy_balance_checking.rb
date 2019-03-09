@@ -11,12 +11,12 @@
 # 128 Book 14.32
 # 129 Gasoline 16.10"
 
-# The first line shows the original balance. Each other line (when not blank) gives information: check number, 
+# The first line shows the original balance. Each other line (when not blank) gives information: check number,
 # category, check amount.
 
 # First you have to clean the lines keeping only letters, digits, dots and spaces.
 
-# Then return a report as a string (underscores show spaces -- don't put them in your solution. They are there 
+# Then return a report as a string (underscores show spaces -- don't put them in your solution. They are there
 #   so you can see them and how many of them you need to have):
 
 # "Original_Balance:_1000.00
@@ -28,7 +28,7 @@
 # Total_expense__198.27
 # Average_expense__39.65"
 
-# On each line of the report you have to add the new balance and then in the last two lines the total expense 
+# On each line of the report you have to add the new balance and then in the last two lines the total expense
 # and the average expense. So as not to have a too long result string we don't ask for a properly formatted result.
 # Notes
 
@@ -40,14 +40,14 @@ def balance(b)
   b = b.split("\n")
   header = b.shift
   sum = header.match(/\d+/)[0].to_f
-  @total_expense, @count = 0, 0
-  b.reject { |c| c.empty? }.map do |i| 
-    expense = i.scan(/([\d\.]+)/)[1].join.to_f  
-    @total_expense += expense
-    @count += 1
-    "#{i.match(/^\d+/)} #{i.match(/[a-zA-Z]+/)} #{'%.2f' % expense} Balance #{'%.2f' % sum = sum - expense}" 
+  total_expense, count = 0, 0
+  b.reject { |c| c.empty? }.map do |i|
+    expense = i.scan(/([\d\.]+)/)[1].join.to_f
+    total_expense += expense
+    count += 1
+    "#{i.match(/^\d+/)} #{i.match(/[a-zA-Z]+/)} #{'%.2f' % expense} Balance #{'%.2f' % sum = sum - expense}"
   end
   .unshift("Original Balance: #{'%.2f' % header.scan(/[\d\.]+/).join}")
-  .push("Total expense  #{'%.2f' % @total_expense}")
-  .push("Average expense  #{'%.2f' % (@total_expense / @count)}").join("\r\n")
+  .push("Total expense  #{'%.2f' % total_expense}")
+  .push("Average expense  #{'%.2f' % (total_expense / count)}").join("\r\n")
 end
