@@ -31,3 +31,9 @@
 def bang_bang(history)
   history.scan(/\d+\s+(.+)\z/).join
 end
+
+# v2 (without regexp)
+
+def bang_bang(history)
+  history.split("\n").last.split[1..-1].join ' ' 
+end
