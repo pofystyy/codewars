@@ -12,24 +12,31 @@
 
 # For this second kata we will explore the !n command, according to the man page this one refer to command line n.
 
-# In this kata you should complete a function that take in an integer that correspond to n, and an history with the following 
+# In this kata you should complete a function that take in an integer that correspond to n, and an history with the following
 # format:
 
 #   1  cd /pub
 #   2  more beer
 #   3  lost
-#   4  ls 
-#   5  touch me 
-#   6  chmod 000 me 
+#   4  ls
+#   5  touch me
+#   6  chmod 000 me
 #   7  more me
 #   8  history
 
-# and that should return the nth executed command line, for example with n=4 and the above history it should return ls. If user 
-# ask for a n without any know entry for example n=12 here, the function should return !12: event not found. Note: For this kata 
+# and that should return the nth executed command line, for example with n=4 and the above history it should return ls. If user
+# ask for a n without any know entry for example n=12 here, the function should return !12: event not found. Note: For this kata
 # we will assume that n >= 1.
 
 # Note: Lot of the command line comes form some geeky t-shirt and form this excellent page.
 
 def bang_n(n, history)
-  history.match(/(#{n})(.+)\n/)[2].strip rescue "!#{n}: event not found" 
+  history.match(/(#{n})(.+)\n/)[2].strip rescue "!#{n}: event not found"
+end
+
+# v2 (without regexp)
+
+def bang_n(n,history)
+  hist = history.split('  ')
+  hist[hist.index("#{n}").next].strip rescue "!#{n}: event not found"
 end
