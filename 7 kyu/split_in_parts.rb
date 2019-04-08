@@ -22,3 +22,9 @@
 def split_in_parts (s, part_length)
   s.gsub(/(\w{#{part_length}})/, '\1 ').strip
 end
+
+# v2 (without regexp)
+
+def split_in_parts (s, part_length)
+  s.chars.each_slice(part_length).to_a.map(&:join).join(' ')
+end
