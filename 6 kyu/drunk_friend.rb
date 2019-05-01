@@ -8,6 +8,5 @@
 
 
 def decode(string)
-  return "Input is not a string" unless string.is_a? String
-  string.tr('a-zA-Z', (('a'..'z').to_a.reverse + ('A'..'Z').to_a.reverse).join)
+  string.tr('A-Za-z', (('a'..'z').to_a + ('A'..'Z').to_a).reverse.join) rescue "Input is not a string"
 end
