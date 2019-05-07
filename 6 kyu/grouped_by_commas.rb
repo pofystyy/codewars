@@ -19,3 +19,9 @@
 def solution(n)
   n.to_s.reverse.gsub(/(\d{3})(?=\d+)/, '\1,').reverse
 end
+
+# v2 (without regexp)
+
+def solution(n)
+  n.digits.each_slice(3).map(&:join).join(',').reverse
+end
